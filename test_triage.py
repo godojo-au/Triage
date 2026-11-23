@@ -21,6 +21,7 @@ class TriageTests(unittest.TestCase):
         queue = build_queue(Path(__file__).parent / "examples/items.csv")
         self.assertEqual(len(queue), 4)
         self.assertTrue(all(item["status"] == "needs_review" for item in queue))
+        self.assertEqual(queue[0]["description"], "New starter cannot access the dashboard")
 
 
 if __name__ == "__main__":

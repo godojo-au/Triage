@@ -1,6 +1,6 @@
 # Triage
 
-A small Python tool that turns a CSV inbox into a review queue. It suggests a team and priority using local rules, or an optional AI model. Every item stays `needs_review`; the tool never assigns work or sends messages.
+A Python tool that turns a CSV inbox into a review queue. It suggests a team and priority using local rules, or an optional AI model. Every item stays `needs_review`; the tool never assigns work or sends messages.
 
 ## Try it
 
@@ -11,7 +11,7 @@ python3 triage.py examples/items.csv --output queue.json
 python3 -m unittest -v
 ```
 
-Input columns are `id,title,description`. IDs must be unique. The output is JSON with each item's suggestion, a short reason, and review status. The example contains synthetic work items.
+Input columns are `id,title,description`. IDs must be unique. The output is JSON with each item's full text, suggestion, reason, and review status. The example contains synthetic work items.
 
 ## Optional AI suggestions
 
@@ -26,4 +26,4 @@ python3 triage.py examples/items.csv --ai --output queue.json
 
 ## Why this project
 
-This is a portfolio demonstration of reducing manual inbox sorting while retaining a human decision point. It is not connected to a real help desk, employer data, or an automatic assignment system.
+Use it to prepare a review queue from your own work-item export while retaining a human decision point. It is not connected to a help desk or an automatic assignment system.

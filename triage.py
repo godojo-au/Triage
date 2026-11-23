@@ -18,9 +18,13 @@ ALLOWED_PRIORITIES = {"low", "normal", "high"}
 
 def classify(title, description):
     text = f"{title} {description}".lower()
-    route = next((name for name, words in ROUTES.items() if any(re.search(rf"\b{re.escape(word)}\b", text) for word in words)), "general")
+    match = next(((name, word) for name, words in ROUTES.items() for word in words if re.search(rf"\b{re.escape(word)}\b", text)), None)
+    route = match[0] if match else "general"
     priority = "high" if any(phrase in text for phrase in URGENT) else "normal"
-    return {"route": route, "priority": priority, "reason": "Keyword suggestion; review before assignment"}
+    reason = f"Matched '{match[1]}'" if match else "No routing keyword matched"
+    if priority == "high":
+        reason += "; urgency phrase found"
+    return {"route": route, "priority": priority, "reason": reason}
 
 
 def ai_suggestion(title, description, api_key):
@@ -59,7 +63,7 @@ def build_queue(source, use_ai=False):
     queue = []
     for row in rows:
         suggestion = ai_suggestion(row["title"], row["description"], key) if use_ai else classify(row["title"], row["description"])
-        queue.append({"id": row["id"], "title": row["title"], "suggestion": suggestion, "status": "needs_review"})
+        queue.append({"id": row["id"], "title": row["title"], "description": row["description"], "suggestion": suggestion, "status": "needs_review"})
     return queue
 
 
