@@ -1,0 +1,5 @@
+id,title,description
+T-101,Login blocked,New starter cannot access the dashboard
+T-102,Invoice mismatch,Customer asks for an invoice review
+T-103,Export error,CSV export fails with a timeout
+T-104,Feature idea,Add a compact weekly summary
