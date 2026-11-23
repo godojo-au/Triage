@@ -1,0 +1,5 @@
+id,route,priority,example,guidance
+K-01,access,high,User login blocked and cannot access dashboard,Check identity and access before changing permissions
+K-02,billing,normal,Customer reports invoice amount mismatch,Compare invoice records before replying
+K-03,technical,normal,CSV export fails with timeout error,Collect reproduction steps and error details
+K-04,general,low,Request for a new weekly summary feature,Review scope and value before scheduling
